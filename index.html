@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopAdmin – Dashboard E-commerce</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">Shop<span>Admin</span></div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="#" class="nav-item"><span class="nav-icon">🛒</span> Commandes</a>
+      <a href="#" class="nav-item"><span class="nav-icon">📦</span> Produits</a>
+      <a href="#" class="nav-item"><span class="nav-icon">👥</span> Clients</a>
+      <a href="#" class="nav-item"><span class="nav-icon">📈</span> Analytiques</a>
+      <a href="#" class="nav-item"><span class="nav-icon">⚙️</span> Paramètres</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">LL</div>
+      <div>
+        <p class="user-name">Lucas Leblanc</p>
+        <p class="user-role">Administrateur</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div>
+        <h1>Dashboard</h1>
+        <p class="topbar-date">Mercredi 10 juin 2026</p>
+      </div>
+      <div class="topbar-actions">
+        <div class="search-box"><span>🔍</span><input type="text" placeholder="Rechercher..." /></div>
+        <button class="btn-export">+ Exporter</button>
+        <div class="notif-btn">🔔<span class="notif-dot"></span></div>
+      </div>
+    </header>
+
+    <!-- KPI CARDS -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Chiffre d'affaires</span>
+          <span class="kpi-icon" style="background:rgba(124,58,237,0.15);color:#a78bfa;">💰</span>
+        </div>
+        <div class="kpi-value">48 290 €</div>
+        <div class="kpi-trend up">▲ +12,4% ce mois</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Commandes</span>
+          <span class="kpi-icon" style="background:rgba(37,99,235,0.15);color:#60a5fa;">🛒</span>
+        </div>
+        <div class="kpi-value">1 284</div>
+        <div class="kpi-trend up">▲ +8,1% ce mois</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Nouveaux clients</span>
+          <span class="kpi-icon" style="background:rgba(16,185,129,0.15);color:#6ee7b7;">👥</span>
+        </div>
+        <div class="kpi-value">342</div>
+        <div class="kpi-trend up">▲ +5,3% ce mois</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Panier moyen</span>
+          <span class="kpi-icon" style="background:rgba(245,158,11,0.15);color:#fcd34d;">🧾</span>
+        </div>
+        <div class="kpi-value">37,60 €</div>
+        <div class="kpi-trend down">▼ -2,1% ce mois</div>
+      </div>
+    </div>
+
+    <!-- CHARTS ROW -->
+    <div class="charts-row">
+      <div class="card chart-card large">
+        <div class="card-header">
+          <h2>Revenus mensuels</h2>
+          <div class="chart-tabs">
+            <button class="tab active" onclick="switchChart('revenus', this)">6 mois</button>
+            <button class="tab" onclick="switchChart('annuel', this)">1 an</button>
+          </div>
+        </div>
+        <canvas id="revenusChart" height="100"></canvas>
+      </div>
+      <div class="card chart-card small">
+        <div class="card-header"><h2>Ventes par catégorie</h2></div>
+        <canvas id="categoriesChart" height="200"></canvas>
+        <div class="legend">
+          <div class="legend-item"><span style="background:#7c3aed"></span>Électronique</div>
+          <div class="legend-item"><span style="background:#2563eb"></span>Mode</div>
+          <div class="legend-item"><span style="background:#10b981"></span>Maison</div>
+          <div class="legend-item"><span style="background:#f59e0b"></span>Autre</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-row">
+
+      <!-- DERNIÈRES COMMANDES -->
+      <div class="card orders-card">
+        <div class="card-header">
+          <h2>Dernières commandes</h2>
+          <a href="#" class="see-all">Voir tout →</a>
+        </div>
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>#Commande</th>
+              <th>Client</th>
+              <th>Montant</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="order-id">#10482</td>
+              <td>Marie Fontaine</td>
+              <td>89,90 €</td>
+              <td><span class="badge badge-success">Livré</span></td>
+            </tr>
+            <tr>
+              <td class="order-id">#10481</td>
+              <td>Pierre Moreau</td>
+              <td>124,50 €</td>
+              <td><span class="badge badge-warning">En cours</span></td>
+            </tr>
+            <tr>
+              <td class="order-id">#10480</td>
+              <td>Sophie Bernard</td>
+              <td>45,00 €</td>
+              <td><span class="badge badge-success">Livré</span></td>
+            </tr>
+            <tr>
+              <td class="order-id">#10479</td>
+              <td>Thomas Leroy</td>
+              <td>210,00 €</td>
+              <td><span class="badge badge-info">Expédié</span></td>
+            </tr>
+            <tr>
+              <td class="order-id">#10478</td>
+              <td>Julie Petit</td>
+              <td>67,30 €</td>
+              <td><span class="badge badge-danger">Annulé</span></td>
+            </tr>
+            <tr>
+              <td class="order-id">#10477</td>
+              <td>Nicolas Dupuis</td>
+              <td>155,80 €</td>
+              <td><span class="badge badge-success">Livré</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TOP PRODUITS -->
+      <div class="card products-card">
+        <div class="card-header">
+          <h2>Top produits</h2>
+          <a href="#" class="see-all">Voir tout →</a>
+        </div>
+        <div class="product-list">
+          <div class="product-item">
+            <div class="product-rank">1</div>
+            <div class="product-info">
+              <p class="product-name">Casque Audio Pro X200</p>
+              <p class="product-sales">284 ventes</p>
+            </div>
+            <div class="product-revenue">4 260 €</div>
+          </div>
+          <div class="product-item">
+            <div class="product-rank">2</div>
+            <div class="product-info">
+              <p class="product-name">Sneakers Urban Runner</p>
+              <p class="product-sales">201 ventes</p>
+            </div>
+            <div class="product-revenue">3 015 €</div>
+          </div>
+          <div class="product-item">
+            <div class="product-rank">3</div>
+            <div class="product-info">
+              <p class="product-name">Lampe LED Modulable</p>
+              <p class="product-sales">178 ventes</p>
+            </div>
+            <div class="product-revenue">2 136 €</div>
+          </div>
+          <div class="product-item">
+            <div class="product-rank">4</div>
+            <div class="product-info">
+              <p class="product-name">Sac à dos Traveller 30L</p>
+              <p class="product-sales">154 ventes</p>
+            </div>
+            <div class="product-revenue">1 848 €</div>
+          </div>
+          <div class="product-item">
+            <div class="product-rank">5</div>
+            <div class="product-info">
+              <p class="product-name">Montre Connectée FitTime</p>
+              <p class="product-sales">132 ventes</p>
+            </div>
+            <div class="product-revenue">5 280 €</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
